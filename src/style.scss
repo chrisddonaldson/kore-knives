@@ -1,0 +1,93 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+
+
+@layer base {
+    h1 {
+        @apply font-jetbrains font-semibold text-5xl;
+        @screen md {
+            @apply text-5xl;
+        }
+      }
+    h2 {
+        @apply font-jetbrains font-semibold  text-3xl ;
+        @screen md {
+            @apply text-5xl;
+        }
+      }
+      h3 {
+        @apply font-jetbrains font-semibold text-2xl ;
+        @screen md {
+            @apply text-3xl;
+        }
+      }
+      h4 {
+        @apply font-jetbrains font-semibold text-xl ;
+        @screen md {
+            @apply text-2xl;
+        }
+      }
+      h5 {
+        @apply font-jetbrains font-semibold text-lg uppercase;
+        @screen md {
+            @apply text-xl;
+        }
+      }
+      h6 {
+        @apply font-jetbrains font-semibold text-base tracking-widest uppercase;
+        @screen md {
+            @apply text-lg;
+        }
+      }
+    p {
+      @apply font-roboto font-light text-sm;
+      @screen md {
+        @apply text-base;
+    }
+    }
+    span {
+        @apply font-roboto font-light text-sm;
+        @screen md {
+          @apply text-base;
+      }
+      }
+      html {
+        font-family: "Roboto", sans-serif;
+        @apply bg-gray-700;
+      }
+      
+  }
+
+
+
+
+
+
+
+// h1,
+// h2,
+// h3,
+// h4,
+// h5,
+// h6 {
+//   padding-top: 8px;
+//   padding-bottom: 8px;
+//   font-weight: 700;
+// }
+// h2 {
+//   font-size: 2rem;
+//   margin: 0;
+// }
+// h3 {
+//   font-size: 1.8rem;
+//   /* margin: 0; */
+// }
+
+// h3 {
+//   font-size: 1.8rem;
+//   /* margin: 0; */
+// }
+
+
