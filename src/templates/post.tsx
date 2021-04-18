@@ -1,7 +1,7 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
 import styled from "styled-components"
-import PageTemplate from "../templates/page-template"
+import PageTemplate from "./page-template"
 
 interface WorkoutPostInterface {
   data: any
@@ -44,3 +44,4 @@ export const pageQuery = graphql`
     }
   }
 `
+

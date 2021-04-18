@@ -1,5 +1,5 @@
 import React from "react"
-import { Link } from "gatsby"
+import { graphql, Link, useStaticQuery } from "gatsby"
 import styled from "styled-components"
 import { colours } from "../colours"
 // normalize CSS across browsers
@@ -17,6 +17,8 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import { Footer } from "./Layout/Footer"
 import { CurvedHeader } from "./Layout/CurvedHeader"
 import { NavBar } from "./Layout/NavBar"
+import { parse } from "@wordpress/block-serialization-default-parser"
+import { LazyBlock } from "./LazyBlocks/LazyBlocks"
 
 interface LayoutInterface {
   title: string
@@ -32,15 +34,54 @@ const Layout = ({ title, children, nav }: LayoutInterface) => {
     GatsbyImage,
     CurvedHeader,
   }
+
+  const { wpPage } = useStaticQuery(
+    graphql`
+      query {
+        
+  wpPage(title: {eq: "Footer"}) {
+    id
+    lazy_data
+  }
+
+
+      }
+    `
+  )
+
+
+console.log(wpPage)
+const parsedWordpress = parse(wpPage.lazy_data)
+// console.log(parsedWordpress)
+
+const stuff = parsedWordpress.map(v => {
+  try {
+    return LazyBlock[v.blockName](v)
+  } catch (e) {
+    console.error(e)
+    return (
+      <div className={"max-w-md mx-auto p-5"}>
+        <p className={"text-red-600"}>Lazy block error on: {v.blockName} </p>
+      </div>
+    )
+  }
+})
+
   return (
     <React.Fragment>
       <MDXProvider components={shortcodes}>
-        <GlobalWrapper>
-          <NavBar title={title} nav={nav} />
-          {children}
-          {/* <footer>© {new Date().getFullYear()}</footer> */}
-          <Footer />
-        </GlobalWrapper>
+      <NavBar title={title} nav={nav} />
+        <div  className={"h-full mt-10"}>
+       
+            <div className={"h-full w-full"}>
+              {children}
+              {/* <footer>© {new Date().getFullYear()}</footer> */}
+          
+            </div>
+            <footer>
+              {stuff.map(v=>v)}
+           </footer>
+          </div>
       </MDXProvider>
     </React.Fragment>
   )
@@ -48,7 +89,4 @@ const Layout = ({ title, children, nav }: LayoutInterface) => {
 
 export default Layout
 
-const GlobalWrapper = styled.div`
-  color: white;
-  padding-top: 54px;
-`
+

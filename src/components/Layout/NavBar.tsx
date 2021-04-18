@@ -13,11 +13,11 @@ interface NavBarInterface {
 
 export const NavBar = ({ title, nav }: NavBarInterface) => {
   return (
-    <div className={"shadow-lg fixed z-50 w-full bg-gray-700 text-white top-0"}>
-      <div className={" max-w-screen-xl mx-auto grid grid-cols-2"}>
+    <div className={"shadow-lg fixed z-50 w-full bg-gray-100 text-gray-800 top-0"}>
+      <div className={" max-w-screen-xl mx-auto grid grid-cols-2 px-5"}>
         <div>
           <Link to="/" className={"inline-block"}>
-            <h4 className={"text-gray-700 p-1  bg-green-400"}>{title}</h4>
+            <h4 className={"text-gray-100 p-1  bg-gray-800"}>{title}</h4>
           </Link>
         </div>
 
@@ -26,7 +26,7 @@ export const NavBar = ({ title, nav }: NavBarInterface) => {
             // console.log(item)
             if (item.parentId === null) {
               return (
-                <DropDown className={"inline-block p-2"}>
+                <DropDown className={"inline-block p-2 font-jetbrains"}>
                   <Link to={item.path}>{item.label}</Link>
                   <div className={"drop-down-list hidden absolute"}>
                     <div className={"relative max-w-sm"}>
@@ -34,7 +34,7 @@ export const NavBar = ({ title, nav }: NavBarInterface) => {
                         <Link
                           to={v.path}
                           className={
-                            "p-5 w-full bg-gray-700 block hover:bg-gray-800"
+                            "p-5 w-full bg-gray-100 block hover:bg-gray-200"
                           }
                         >
                           {v.label}

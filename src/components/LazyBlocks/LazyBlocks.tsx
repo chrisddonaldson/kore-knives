@@ -2,6 +2,7 @@ import React from "react"
 import { DisplayArticles } from "./DisplayArticles"
 import { HomePageHeader } from "./HomepageHeader"
 import { HorizontalCards } from "./HorizontalCards"
+import { ImageFooter } from "./ImageFooter"
 
 export const LazyBlock = {
   "core/paragraph": (v: any) => (
@@ -36,6 +37,7 @@ export const LazyBlock = {
   "lazyblock/homepage-header": (v: any) => <HomePageHeader data={v} />,
   "lazyblock/horizontal-cards": (v: any) => <HorizontalCards data={v} />,
   "lazyblock/display-articles": (v: any) => <DisplayArticles data={v}/>,
+  "lazyblock/image-footer": (v: any) => <ImageFooter data={v}/>,
 
   null: () => <></>,
 }

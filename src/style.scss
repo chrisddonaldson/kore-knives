@@ -42,22 +42,25 @@
         }
       }
     p {
-      @apply font-roboto font-light text-sm;
+      @apply font-jetbrains font-light text-sm;
       @screen md {
         @apply text-base;
     }
     }
     span {
-        @apply font-roboto font-light text-sm;
+        @apply font-jetbrains font-light text-sm;
         @screen md {
           @apply text-base;
       }
       }
       html {
         font-family: "Roboto", sans-serif;
-        @apply bg-gray-700;
+        min-height: 100vh;
+        @apply bg-gray-100 text-gray-700;
       }
-      
+      body{
+        min-height: 100vh;
+      }
   }
 
 
