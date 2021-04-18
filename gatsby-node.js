@@ -5,9 +5,9 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions
 
   // Define a template for blog post
-  const blogPost = path.resolve(`./src/templates/blog-post.tsx`)
+  
   const pageTemplate = path.resolve(`./src/templates/page-template.tsx`)
-  const workoutTemplate = path.resolve(`./src/templates/workout-post.tsx`)
+  const postTemplate = path.resolve(`./src/templates/post.tsx`)
 
   // Get all markdown blog posts sorted by date
   const result = await graphql(
@@ -31,23 +31,15 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           }
         }
       }
-    
-    allWpWorkoutPost {
-      edges {
-        node {
-          id
-          uri
+      allWpPost {
+        edges {
+          node {
+            id
+            slug
+          }
         }
       }
-    }
-    allWpWorkoutPost {
-      edges {
-        node {
-          id
-          uri
-        }
-      }
-    }
+  
   }
     `
   )
@@ -75,20 +67,22 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       })
     })
   }
+  //const posts = result.data.allMdx.nodes
+  const posts1 = result.data.allWpPost.edges
+  const posts = posts1.map(v => v.node)
 
-  const WorkoutPost = result.data.allWpWorkoutPost.edges
-  const workoutPosts = WorkoutPost.map(v => v.node)
-  if (workoutPosts.length > 0) {
-    workoutPosts.forEach((post, index) => {
+  if (posts.length > 0) {
+    posts.forEach((post, index) => {
       createPage({
-        path: post.uri,
-        component: workoutTemplate,
+        path: post.slug,
+        component: postTemplate,
         context: {
           id: post.id,
         },
       })
     })
   }
+
 }
 
 exports.onCreateNode = ({ node, actions, getNode }) => {

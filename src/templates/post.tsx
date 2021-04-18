@@ -8,19 +8,19 @@ interface WorkoutPostInterface {
   location: string
 }
 
-const WorkoutPost = ({ data, location }: WorkoutPostInterface) => {
+const Post = ({ data, location }: WorkoutPostInterface) => {
   return <PageTemplate location={location} data={data} />
 }
 
-export default WorkoutPost
+export default Post
 export const pageQuery = graphql`
-  query WorkoutPostBySlug($id: String!) {
+  query PostBySlug($id: String!) {
     site {
       siteMetadata {
         title
       }
     }
-    wpPage: wpWorkoutPost(id: { eq: $id }) {
+    wpPage: wpPost(id: { eq: $id }) {
       id
       title
       lazy_data

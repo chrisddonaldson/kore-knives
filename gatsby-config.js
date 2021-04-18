@@ -1,15 +1,14 @@
 module.exports = {
   siteMetadata: {
-    title: `Big Boat Potential`,
+    title: `Kore Knives`,
     author: {
-      name: `Jean Software Limited.`,
+      name: `Jean Software`,
       summary: `Jean Software Limited is a Software company founded in 2019 by CEO Chris Donaldson. Jean aims to bring simple software solutions to enhance businesses perfomance and enable content creators.`,
     },
-    description: `Big Boat Potenial. A blog run by Chris Donaldson and friends on big brain topics. This
-    website is currently under construction so please ignore the mess!`,
-    siteUrl: `https://www.bigboatpotential.com`,
+    description: `Northumbrian bladesmith`,
+    siteUrl: `https://kore-knives.com/`,
     social: {
-      Instagram: `@chrisddonaldson`,
+      Instagram: `@kore_knives`,
     },
   },
   plugins: [
@@ -99,7 +98,7 @@ module.exports = {
     {
       resolve: `gatsby-source-wordpress`,
       options: {
-        url: `https://cms.bigboatpotential.com/graphql`,
+        url: `https://cms.kore-knives.com/graphql`,
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality

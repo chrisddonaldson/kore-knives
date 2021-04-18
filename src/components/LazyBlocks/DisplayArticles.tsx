@@ -11,7 +11,7 @@ export const DisplayArticles:React.FC<DisplayArticlesInterface> = ({data}) => {
         <StaticQuery
         query={graphql`
           query {
-            allWpWorkoutPost {
+            allWpPost {
                 edges {
                     node {
                         id
@@ -20,44 +20,26 @@ export const DisplayArticles:React.FC<DisplayArticlesInterface> = ({data}) => {
                     }
                 }
             }
-            allWpChinesePost {
-                edges {
-                    node {
-                        id
-                        title
-                        uri
-                    }
-                }
-            }
+         
         }
         `}
         render={data => {
-            const chinesePosts = data.allWpChinesePost.edges.map(v=>v.node)
-          
-            const workoutPosts = data.allWpWorkoutPost.edges.map(v=>v.node)
-            console.log(workoutPosts)
+            const posts = data.allWpPost.edges.map(v=>v.node)
+            console.log(posts)
                return(
-               
                <div className={"max-w-screen-xl mx-auto px-5"}>
-                <h3> Chinese</h3>
-                {chinesePosts.map(v=> <Link to={v.uri}>
+                <h3>Latest Posts</h3>
+                {posts.map(v=> <Link to={v.uri}>
                     <div className={"p-5"}>
                         <h4>
                             {v.title}
                             </h4>
                             </div></Link>)}
-                <h3> Workout</h3>
-                {workoutPosts.map(v=> <Link to={v.uri}>
-                    <div className={"p-5"}>
-                        <h4>
-                            {v.title}
-                            </h4>
-                            </div></Link>)}
-
             </div>)}
             
             
         }
      />
+
     )
 }
