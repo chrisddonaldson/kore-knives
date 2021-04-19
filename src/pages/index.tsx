@@ -1,14 +1,48 @@
 import { graphql } from "gatsby"
-import React from "react"
+import React, { Suspense, useEffect, useState } from "react"
 import styled from "styled-components"
 import { colours } from "../colours"
 import PageTemplate from "../templates/page-template"
-const BlogIndex = ({ data, location }) => {
-  console.log("home")
-  console.log(data)
-  return (
-    <PageTemplate location={location} data={data} />
+import { Canvas, useLoader} from 'react-three-fiber'
+import { Box } from "../components/3d/box"
 
+import GLTFModal from "../components/3d/GLTFModal"
+import { OrbitControls } from "@react-three/drei"
+
+
+
+// import { useGLTF } from "@react-three/drei"
+// import { draco } from'@react-three/drei';
+// let camera, scene, renderer;
+// let geometry, material, mesh;
+
+const BlogIndex = ({ data, location }) => {
+  // const modelURL = "https://cms.kore-knives.com/wp-content/uploads/2021/04/Knife_Full.gltf"
+  const modelURL = "models/Knife_Full.gltf"
+
+  return (
+    <>
+    <div  className={"border-black border mx-auto"} style={{height: 600, width: 600}}>
+      <Canvas>
+        <OrbitControls/>
+        <perspectiveCamera fov={90} aspect={1} />
+        {/* <ambientLight /> */}
+        <hemisphereLight args={["white", 2, 2]} />
+        <spotLight
+        intensity={0.2}
+        position={[20, 25, 14]}
+        angle={0.15}
+        penumbra={1}
+        castShadow
+      />
+        <pointLight position={[10, 10, 10]} />
+        <Box position={[-1.2, 0, 0]} />
+        <Box position={[1.2, 0, 0]} />
+        <Suspense fallback={<Box />}>{<GLTFModal scenePath={modelURL} position={[0,0,0]} rotation={[0,0,0]} scale={10}/>}</Suspense>
+  </Canvas>
+  </div>
+    <PageTemplate location={location} data={data} />
+    </>
     //   <GoldenLayout>
     //     <div>
     //       <PolaroidContainer>
