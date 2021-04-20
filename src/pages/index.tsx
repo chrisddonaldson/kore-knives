@@ -18,8 +18,8 @@ import { PresetsType } from "@react-three/drei/helpers/environment-assets"
 // let geometry, material, mesh;
 
 const BlogIndex = ({ data, location }) => {
-  const modelURL = "https://cms.kore-knives.com/wp-content/uploads/2021/04/Knife_Full.gltf"
-  // const modelURL = "models/Knife_Full.gltf"
+  // const modelURL = "https://cms.kore-knives.com/wp-content/uploads/2021/04/Knife_Full.gltf"
+  const modelURL = "models/Knife_Full.gltf"
   const [background, setBackground] = useState<PresetsType>("warehouse")
   return (
     <>
@@ -66,7 +66,7 @@ const BlogIndex = ({ data, location }) => {
   <input type="button" value="Park" onClick={()=>setBackground("park")} />
 
   <p className="mx-auto max-w-xl py-10 text-white">
-    The model is loaded in from wordpress media. It uses a box as a place holder as it is loading. This means we can add a model to each product all via the cms!
+    The model is loaded in from wordpress media (almost, just need to add cors to wordpress). It uses a box as a place holder as it is loading. This means we can add a model to each product all via the cms!
   </p>
   <p className="mx-auto max-w-xl pb-10 text-white">
     The boxes have a hover and a on click state. The scene has orbit controls which can be customised. I have toggled the background to show but we can hide that too.
