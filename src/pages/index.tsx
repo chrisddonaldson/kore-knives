@@ -8,6 +8,7 @@ import { Box } from "../components/3d/box"
 
 import GLTFModal from "../components/3d/GLTFModal"
 import { Environment, OrbitControls } from "@react-three/drei"
+import { PresetsType } from "@react-three/drei/helpers/environment-assets"
 
 
 
@@ -17,19 +18,19 @@ import { Environment, OrbitControls } from "@react-three/drei"
 // let geometry, material, mesh;
 
 const BlogIndex = ({ data, location }) => {
-  // const modelURL = "https://cms.kore-knives.com/wp-content/uploads/2021/04/Knife_Full.gltf"
-  const modelURL = "models/Knife_Full.gltf"
-
+  const modelURL = "https://cms.kore-knives.com/wp-content/uploads/2021/04/Knife_Full.gltf"
+  // const modelURL = "models/Knife_Full.gltf"
+  const [background, setBackground] = useState<PresetsType>("warehouse")
   return (
     <>
-    <div  className={"border-black border mx-auto"} style={{height: 600, width: 600}}>
+    <div  className={"mx-auto relative"} style={{height: 600, width: "100%"}}>
       <Canvas>
       <Suspense fallback={null}>
       <Environment
       background={true} // Whether to affect scene.background
       // files={['px.png', 'nx.png', 'py.png', 'ny.png', 'pz.png', 'nz.png']} // Array of cubemap files OR single equirectangular file
       // path={'/'} // Path to the above file(s)
-      preset={"warehouse"} // Preset string (overrides files and path)
+      preset={background} // Preset string (overrides files and path)
       // scene={undefined} // adds the ability to pass a custom THREE.Scene
     />
     </Suspense>
@@ -45,11 +46,34 @@ const BlogIndex = ({ data, location }) => {
         castShadow
       />
         <pointLight position={[10, 10, 10]} /> */}
-        <Box position={[-1.2, 0, 0]} />
-        <Box position={[1.2, 0, 0]} />
+        <Box position={[-2.2, 0, 0]} />
+        <Box position={[2.2, 0, 0]} />
         <Suspense fallback={<Box />}>{<GLTFModal scenePath={modelURL} position={[0,0,0]} rotation={[0,0,0]} scale={10}/>}</Suspense>
   </Canvas>
+  <div className={"absolute left-5 bottom-5"}>
+  {/* <input type="button" value="Studio" onClick={()=>setBackground("studio")} /> */}
+  <br/>
+  <input type="button" value="Warehouse" onClick={()=>setBackground("warehouse")} />
+  <br/>
+  <input type="button" value="City" onClick={()=>setBackground("city")} />
+  <br/>
+  <input type="button" value="Dawn" onClick={()=>setBackground("dawn")} />
+  <br/>
+  <input type="button" value="Loby" onClick={()=>setBackground("lobby")} />
+  <br/>
+  <input type="button" value="Apartment" onClick={()=>setBackground("apartment")} />
+  <br/>
+  <input type="button" value="Park" onClick={()=>setBackground("park")} />
+
+  <p className="mx-auto max-w-xl py-10 text-white">
+    The model is loaded in from wordpress media. It uses a box as a place holder as it is loading. This means we can add a model to each product all via the cms!
+  </p>
+  <p className="mx-auto max-w-xl pb-10 text-white">
+    The boxes have a hover and a on click state. The scene has orbit controls which can be customised. I have toggled the background to show but we can hide that too.
+  </p>
   </div>
+  </div>
+  
     <PageTemplate location={location} data={data} />
     </>
     //   <GoldenLayout>
