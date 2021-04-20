@@ -7,7 +7,7 @@ import { Canvas, useLoader} from 'react-three-fiber'
 import { Box } from "../components/3d/box"
 
 import GLTFModal from "../components/3d/GLTFModal"
-import { OrbitControls } from "@react-three/drei"
+import { Environment, OrbitControls } from "@react-three/drei"
 
 
 
@@ -24,10 +24,19 @@ const BlogIndex = ({ data, location }) => {
     <>
     <div  className={"border-black border mx-auto"} style={{height: 600, width: 600}}>
       <Canvas>
+      <Suspense fallback={null}>
+      <Environment
+      background={true} // Whether to affect scene.background
+      // files={['px.png', 'nx.png', 'py.png', 'ny.png', 'pz.png', 'nz.png']} // Array of cubemap files OR single equirectangular file
+      // path={'/'} // Path to the above file(s)
+      preset={"warehouse"} // Preset string (overrides files and path)
+      // scene={undefined} // adds the ability to pass a custom THREE.Scene
+    />
+    </Suspense>
         <OrbitControls/>
         <perspectiveCamera fov={90} aspect={1} />
         {/* <ambientLight /> */}
-        <hemisphereLight args={["white", 2, 2]} />
+        {/* <hemisphereLight args={["white", 2, 2]} />
         <spotLight
         intensity={0.2}
         position={[20, 25, 14]}
@@ -35,7 +44,7 @@ const BlogIndex = ({ data, location }) => {
         penumbra={1}
         castShadow
       />
-        <pointLight position={[10, 10, 10]} />
+        <pointLight position={[10, 10, 10]} /> */}
         <Box position={[-1.2, 0, 0]} />
         <Box position={[1.2, 0, 0]} />
         <Suspense fallback={<Box />}>{<GLTFModal scenePath={modelURL} position={[0,0,0]} rotation={[0,0,0]} scale={10}/>}</Suspense>
