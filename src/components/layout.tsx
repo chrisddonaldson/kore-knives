@@ -1,21 +1,13 @@
 import React from "react"
-import { graphql, Link, useStaticQuery } from "gatsby"
-import styled from "styled-components"
-import { colours } from "../colours"
+import { graphql, useStaticQuery } from "gatsby"
 // normalize CSS across browsers
 import "../normalize.css"
 // custom CSS styles
 import "../style.scss"
-import { MDXProvider } from "@mdx-js/react"
 
 // Highlighting for code blocks
 import "prismjs/themes/prism.css"
 
-import { ConversationExample } from "./chinese/ConversationExample"
-import { GoldenLayout } from "./Layout/GoldenLayout"
-import { GatsbyImage } from "gatsby-plugin-image"
-import { Footer } from "./Layout/Footer"
-import { CurvedHeader } from "./Layout/CurvedHeader"
 import { NavBar } from "./Layout/NavBar"
 import { parse } from "@wordpress/block-serialization-default-parser"
 import { LazyBlock } from "./LazyBlocks/LazyBlocks"
@@ -27,24 +19,13 @@ interface LayoutInterface {
 }
 
 const Layout = ({ title, children, nav }: LayoutInterface) => {
-  const rootPath = `${__PATH_PREFIX__}/`
-  const shortcodes = {
-    ConversationExample,
-    GoldenLayout,
-    GatsbyImage,
-    CurvedHeader,
-  }
-
   const { wpPage } = useStaticQuery(
     graphql`
       query {
-        
-  wpPage(title: {eq: "Footer"}) {
-    id
-    lazy_data
-  }
-
-
+        wpPage(title: {eq: "Footer"}) {
+          id
+          lazy_data
+        }
       }
     `
   )
@@ -69,7 +50,6 @@ const stuff = parsedWordpress.map(v => {
 
   return (
     <React.Fragment>
-      <MDXProvider components={shortcodes}>
       <NavBar title={title} nav={nav} />
         <div  className={"h-full mt-10"}>
        
@@ -82,7 +62,6 @@ const stuff = parsedWordpress.map(v => {
               {stuff.map(v=>v)}
            </footer>
           </div>
-      </MDXProvider>
     </React.Fragment>
   )
 }
