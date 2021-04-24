@@ -1,15 +1,32 @@
 import { graphql, Link, StaticQuery } from 'gatsby'
 import React from 'react'
-import { GatsbyImage } from "gatsby-plugin-image"
+
 import { ArticleThumbnail } from './ArticleThumbnail'
+import { v4 as uuidv4 } from 'uuid';
+import { ProductThumbnail } from './ProductThumbnail';
+import { Button } from '../Button';
 interface DisplayArticlesInterface { 
     data: any
 }
 
 export const DisplayArticles:React.FC<DisplayArticlesInterface> = ({data}) => {
 
+    let showArticles= false
+    let showProducts= false
+    let singleRow= false
+
+
+    try{
+        showArticles =  data.attrs["show-articles"]
+        showProducts =  data.attrs["show-products"]
+        singleRow =  data.attrs["single-row"]
+    }catch(e){
+        console.error(e)
+    }
+    console.log(singleRow)
     return(
         <StaticQuery
+        key={uuidv4()}
         query={graphql`
           query            
           {
@@ -55,20 +72,36 @@ export const DisplayArticles:React.FC<DisplayArticlesInterface> = ({data}) => {
         render={data => {
             const posts = data.allWpPost.edges.map(v=>v.node)
             const products = data.allWpProduct.edges.map(v=>v.node)
-            console.log(posts)
+
                return(
-               <div className={"max-w-screen-xl mx-auto px-5 my-16"}>
-                <h3 >Latest Posts</h3>
-                <hr className={"my-5"}/>
+
+               <div className={"max-w-screen-xl mx-auto px-5 my-16 "}>
+                
+                {showArticles ? (
                 <div className={"grid md:grid-cols-3 sm:grid-cols-2 mb-5 gap-6"}>
-                    {posts.map(v=> <ArticleThumbnail article={v}/>)}
+                    {posts.map((v,i)=> {
+                    if(singleRow && i>=3) return null
+                    return <ArticleThumbnail article={v} key={uuidv4()}/>
+                    })}
                   
-                </div>
-                <h3>Latest Products</h3>
-                <hr className={"my-5"}/>
+                </div>):(null)}
+                    {showProducts ? (
                 <div className={"grid md:grid-cols-3 sm:grid-cols-2 mb-5 gap-20"}>
-                {products.map(v=> <ArticleThumbnail article={v}/>)}
-                </div>
+                {products.map((v,i)=> {
+                 if(singleRow && i>=3) return null
+                 return <ProductThumbnail product={v} key={uuidv4()}/>}
+                )
+                }
+                
+       
+                </div>):(null)}
+                <div className={"w-full border"}>
+                <Link to={"/products"} className={"mx-auto"}>
+              
+              <Button label={"View All"} />
+              </Link>
+
+            </div>
             </div>
             )}
         }
