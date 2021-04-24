@@ -66,7 +66,7 @@ export const DisplayArticles:React.FC<DisplayArticlesInterface> = ({data}) => {
                 </div>
                 <h3>Latest Products</h3>
                 <hr className={"my-5"}/>
-                <div className={"grid md:grid-cols-3 sm:grid-cols-2 mb-5 gap-6"}>
+                <div className={"grid md:grid-cols-3 sm:grid-cols-2 mb-5 gap-20"}>
                 {products.map(v=> <ArticleThumbnail article={v}/>)}
                 </div>
             </div>

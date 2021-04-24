@@ -16,38 +16,42 @@ export const ArticleThumbnail: React.FC<ArticleThumbnialInterface> = ({article})
         console.error("No feature image for: " + article.title)
     }
 
-    const knifeLabels= ["Type", "Total Length", "Cutting Edge lenght", "Blade Height", "Weight", "Handle Material", "Liner Material", "Blade Material", "Rivet Material", "Serial No."]
+    const knifeLabels= ["Type", "Total Length", "Cutting Edge length", "Blade Height", "Weight", "Handle Material", "Liner Material", "Blade Material", "Rivet Material", "Serial No."]
 return(
 
-<StlyedLink to={article.uri} className={"grid "}>
+<StlyedLink to={article.uri} className={"grid"}>
     <Top className={"z-10 flex justify-end relative"} >
         <div className={"bg-green-900 z-10 max-w-2/5 w-2/5  h-full absolute -top-5 -right-5 shadow-lg" }> </div>
     </Top>
-    <Background className={"bg-green-400  shadow-xl"}>
-    {/* <GatsbyImage image={featureImage} alt={"alt"} className={"bg-cover h-64 "}/> */}
+    <Background className={"bg-green-400  shadow-xl h-72"}>
+    <GatsbyImage image={featureImage} alt={"alt"} className={"bg-cover h-80 z-20 transform -rotate-45 scale"}/>
     </Background>
-    <Card className={"bg-white p-5 m-5 rounded-md shadow-lg"}>
-    <div className={"pb-1 "}>
-        <h4>{article.title}</h4>
+    <Card className={"bg-white overflow-hidden rounded-md shadow-lg mt-14 mx-5 "}>
+        
+        <h4 className={"px-5 py-5"}>{article.title}</h4>
+
         {console.log(article)}
-        <table className={"w-full"}>
+        <div className={"bg-gray-200 px-5"}>
+
+       
+        <table className={"w-full text-sm "}>
             <tr>
-                <th>
-stat
-                </th>
-                <th>
-value
-</th>
+            <th className={"text-xs text-left uppercase"}>
+             stat
+             </th>
+            <th className={"text-xs text-left uppercase"}>
+            value
+        </th>
             </tr>
     {knifeLabels.map(v=>{
       
         return(
-            <tr>
+            <tr >
                 <td className={"mr-1"}>
-                    <span >{v}</span>
+                    <span className={"text-xs"}>{v}</span>
                 </td>
                 <td>
-                <span>100</span>
+                <span className={"text-xs"}>100</span>
                 </td>
             </tr>
         )
@@ -73,6 +77,6 @@ grid-area: 2 / 1 / 4 / 2;
 `
 
 const StlyedLink = styled(Link)`
-  grid-template-rows: 1.1fr 0.6fr 1.3fr;
+  grid-template-rows: 1.1fr 0.8fr 1.3fr;
 
 `
