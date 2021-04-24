@@ -27,7 +27,6 @@ const BlogIndex = ({ data, location }) => {
 
   const count = useSelector(state => state.basket.value)
   const dispatch = useDispatch()
-console.log(count)
 
   return (
     <>

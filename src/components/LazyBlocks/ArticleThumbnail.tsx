@@ -2,7 +2,7 @@ import { graphql, Link, StaticQuery } from 'gatsby'
 import React from 'react'
 import { GatsbyImage } from "gatsby-plugin-image"
 import styled from 'styled-components'
-
+import { v4 as uuidv4 } from 'uuid';
 interface ArticleThumbnialInterface {
     article: any
 }
@@ -17,49 +17,25 @@ export const ArticleThumbnail: React.FC<ArticleThumbnialInterface> = ({article})
     }
 
     const knifeLabels= ["Type", "Total Length", "Cutting Edge length", "Blade Height", "Weight", "Handle Material", "Liner Material", "Blade Material", "Rivet Material", "Serial No."]
-return(
 
-<StlyedLink to={article.uri} className={"grid"}>
-    <Top className={"z-10 flex justify-end relative"} >
-        <div className={"bg-green-900 z-10 max-w-2/5 w-2/5  h-full absolute -top-5 -right-5 shadow-lg" }> </div>
-    </Top>
-    <Background className={"bg-green-400  shadow-xl h-72"}>
-    <GatsbyImage image={featureImage} alt={"alt"} className={"bg-cover h-80 z-20 transform -rotate-45 scale"}/>
-    </Background>
+
+    return(
+
+
+
+<Link to={article.uri} className={"grid"} key={uuidv4()}>
+
     <Card className={"bg-white overflow-hidden rounded-md shadow-lg mt-14 mx-5 "}>
-        
+    <GatsbyImage image={featureImage} alt={"alt"} className={"bg-cover h-80 z-20 transform"}/>
         <h4 className={"px-5 py-5"}>{article.title}</h4>
 
-        {console.log(article)}
         <div className={"bg-gray-200 px-5"}>
 
        
-        <table className={"w-full text-sm "}>
-            <tr>
-            <th className={"text-xs text-left uppercase"}>
-             stat
-             </th>
-            <th className={"text-xs text-left uppercase"}>
-            value
-        </th>
-            </tr>
-    {knifeLabels.map(v=>{
-      
-        return(
-            <tr >
-                <td className={"mr-1"}>
-                    <span className={"text-xs"}>{v}</span>
-                </td>
-                <td>
-                <span className={"text-xs"}>100</span>
-                </td>
-            </tr>
-        )
-    })}
-    </table>
+
     </div>
     </Card>
-</StlyedLink>)
+</Link>)
 }
 
 const Top = styled.div`

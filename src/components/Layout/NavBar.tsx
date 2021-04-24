@@ -1,8 +1,13 @@
 import React from "react"
 import { Link } from "gatsby"
 import styled from "styled-components"
-
+import { v4 as uuidv4 } from 'uuid';
 import { colours } from "../../colours"
+// import ShoppingCart from "../../../static/icons/shopping-cart.svg"
+import ShoppingCart from "../../../static/icons/shopping-cart.svg"
+
+// import tailwindConfig from './tailwind.config.js'
+
 
 interface NavBarInterface {
   title: string
@@ -12,6 +17,7 @@ interface NavBarInterface {
 
 
 export const NavBar = ({ title, nav }: NavBarInterface) => {
+  // const fullConfig = resolveConfig(tailwindConfig)
   return (
     <div className={"shadow-lg fixed z-50 w-full bg-gray-100 text-gray-800 top-0"}>
       <div className={" max-w-screen-xl mx-auto grid grid-cols-2 px-5"}>
@@ -21,20 +27,22 @@ export const NavBar = ({ title, nav }: NavBarInterface) => {
           </Link>
         </div>
 
-        <NavigationContainer>
+        <div className={"flex"}>
           {nav.map((item: any, i: number) => {
-            // console.log(item)
+       
             if (item.parentId === null) {
               return (
-                <DropDown className={"inline-block p-2 font-jetbrains"}>
-                  <Link to={item.path}>{item.label}</Link>
+                <DropDown className={"inline-block p-2 font-jetbrains"} key={uuidv4()}>
+                  <Link to={item.path} className={"text-xs border border-gray-400 border-1 py-1 px-3"}>{item.label}</Link>
                   <div className={"drop-down-list hidden absolute"}>
                     <div className={"relative max-w-sm"}>
                       {item.childItems.nodes.map((v: any, i: number) => (
                         <Link
+                        key={uuidv4()}
                           to={v.path}
                           className={
-                            "p-5 w-full bg-gray-100 block hover:bg-gray-200"
+                            "w-full bg-gray-100 block hover:bg-gray-200 text-xs border border-gray-400 border-1 py-1 px-5"
+                            
                           }
                         >
                           {v.label}
@@ -46,7 +54,15 @@ export const NavBar = ({ title, nav }: NavBarInterface) => {
               )
             }
           })}
-        </NavigationContainer>
+         
+          <Link to={"/basket"} className={"flex align-center justify-center h-full border p-2"}>
+              <ShoppingCart className={"h-5 w-5 fill-current text-gray-700 hover:text-gray-600"} />
+          </Link>
+          <DropDown className={"inline-block p-2 font-jetbrains"} key={uuidv4()}>
+                  <Link to={"/3d"} className={"text-xs border border-gray-400 border-1 py-1 px-3" }>3D Editor Demo</Link>
+                  </DropDown>
+
+        </div>
       </div>
     </div>
   )

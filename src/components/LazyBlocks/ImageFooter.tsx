@@ -6,7 +6,6 @@ interface ImageFooterInterface {
 
 export const ImageFooter:React.FC<ImageFooterInterface> = ({data}) =>{
 
-    console.log(data)
     return(
         <div  className={"bg-black py-16 "}>
         <div

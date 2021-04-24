@@ -1,5 +1,6 @@
 import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
+import { v4 as uuidv4 } from 'uuid';
 // normalize CSS across browsers
 import "../normalize.css"
 // custom CSS styles
@@ -31,9 +32,9 @@ const Layout = ({ title, children, nav }: LayoutInterface) => {
   )
 
 
-console.log(wpPage)
+
 const parsedWordpress = parse(wpPage.lazy_data)
-// console.log(parsedWordpress)
+
 
 const stuff = parsedWordpress.map(v => {
   try {
@@ -41,7 +42,7 @@ const stuff = parsedWordpress.map(v => {
   } catch (e) {
     console.error(e)
     return (
-      <div className={"max-w-md mx-auto p-5"}>
+      <div className={"max-w-md mx-auto p-5"} key={uuidv4()}>
         <p className={"text-red-600"}>Lazy block error on: {v.blockName} </p>
       </div>
     )
