@@ -5,6 +5,7 @@ import { HorizontalCards } from "./HorizontalCards"
 import { ImageFooter } from "./ImageFooter"
 import { v4 as uuidv4 } from 'uuid';
 import { ShoppingCart } from "./ShoppingCart"
+import { CallToAction } from "./CallToAction"
 
 export const LazyBlock = {
   "core/paragraph": (v: any) => (
@@ -45,6 +46,7 @@ export const LazyBlock = {
   "lazyblock/display-articles": (v: any) => <DisplayArticles data={v} key={uuidv4()}/>,
   "lazyblock/image-footer": (v: any) => <ImageFooter data={v} key={uuidv4()}/>,
   "lazyblock/shopping-cart": (v: any) => <ShoppingCart data={v} key={uuidv4()}/>,
+  "lazyblock/call-to-action": (v: any) => <CallToAction data={v} key={uuidv4()}/>,
 
   null: () => <div key={uuidv4()}></div>,
 }

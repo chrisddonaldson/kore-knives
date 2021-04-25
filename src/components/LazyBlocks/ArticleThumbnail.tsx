@@ -25,7 +25,7 @@ export const ArticleThumbnail: React.FC<ArticleThumbnialInterface> = ({article})
 
 <Link to={article.uri} className={"grid"} key={uuidv4()}>
 
-    <Card className={"bg-white overflow-hidden rounded-md shadow-lg mt-14 mx-5 "}>
+    <Card className={"bg-white overflow-hidden rounded-md shadow-lg mx-5 "}>
     <GatsbyImage image={featureImage} alt={"alt"} className={"bg-cover h-80 z-20 transform"}/>
         <h4 className={"px-5 py-5"}>{article.title}</h4>
 

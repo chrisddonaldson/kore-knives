@@ -95,13 +95,7 @@ export const DisplayArticles:React.FC<DisplayArticlesInterface> = ({data}) => {
                 
        
                 </div>):(null)}
-                <div className={"w-full border"}>
-                <Link to={"/products"} className={"mx-auto"}>
-              
-              <Button label={"View All"} />
-              </Link>
-
-            </div>
+          
             </div>
             )}
         }

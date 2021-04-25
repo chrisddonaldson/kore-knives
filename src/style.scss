@@ -6,58 +6,80 @@
 
 @layer base {
     h1 {
-        @apply font-jetbrains font-semibold text-5xl;
+        @apply font-jetbrains font-semibold text-5xl mt-16;
         @screen md {
             @apply text-5xl;
         }
       }
     h2 {
-        @apply font-jetbrains font-semibold  text-3xl ;
+        @apply font-jetbrains font-semibold  text-3xl pt-10;
         @screen md {
             @apply text-5xl;
         }
       }
       h3 {
-        @apply font-jetbrains font-semibold text-2xl ;
+        @apply font-jetbrains font-semibold text-2xl pt-5;
         @screen md {
             @apply text-3xl;
         }
       }
       h4 {
-        @apply font-jetbrains font-semibold text-xl ;
+        @apply font-jetbrains font-semibold text-xl pt-5;
         @screen md {
             @apply text-2xl;
         }
       }
       h5 {
-        @apply font-jetbrains font-semibold text-lg uppercase;
+        @apply font-jetbrains font-semibold text-lg uppercase pt-5;
         @screen md {
             @apply text-xl;
         }
       }
       h6 {
-        @apply font-jetbrains font-semibold text-base tracking-widest uppercase;
+        @apply font-jetbrains font-semibold text-base tracking-widest uppercase pt-5;
         @screen md {
             @apply text-lg;
         }
       }
-    p {
-      @apply font-jetbrains font-light text-sm;
-      @screen md {
-        @apply text-base;
-    }
-    }
+      p {
+        @apply font-jetbrains font-light text-sm;
+        @screen md {
+          @apply text-base;
+        }
+      }
     span {
         @apply font-jetbrains font-light text-sm;
         @screen md {
           @apply text-base;
+        }
       }
+      label {
+        @apply font-jetbrains font-light text-sm block;
+        @screen md {
+          @apply text-base;
+        }
       }
+      input[type=text],
+      input[type=email],
+      input[type=password] {
+        @apply font-jetbrains font-light text-sm px-10 py-5 text-gray-200 rounded-xl bg-gray-800 border border-gray-400 outline-none;
+        @screen md {
+          @apply text-base;
+        }
+      }
+
+      input[type=submit]{
+        @apply font-jetbrains font-light text-sm px-10 py-5 text-gray-200 rounded-xl bg-gray-800 border border-gray-400 outline-none;
+        @screen md {
+          @apply text-base;
+        }
+      }
+
       html {
         font-family: "Roboto", sans-serif;
         min-height: 100vh;
         @apply bg-gray-100 text-gray-700;
-      }
+       }
       body{
         min-height: 100vh;
       }
