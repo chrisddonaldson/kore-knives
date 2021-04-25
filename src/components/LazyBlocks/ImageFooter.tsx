@@ -30,7 +30,7 @@ export const ImageFooter:React.FC<ImageFooterInterface> = ({data}) =>{
                 Stay in touch
             </h3>
             <p className={"py-5"}>
-                Join our mailing list for
+                Join our mailing list 
             </p>
             <label>
                 email
